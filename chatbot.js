@@ -125,13 +125,18 @@ document.addEventListener('DOMContentLoaded', () => {
        conversationContext += `\nUser: ${val}`;
        const geminiPrompt = `You are a mystical Crystal Guide AI for an online store called 'Gemessence'. Our inventory is exclusively: ${JSON.stringify(productsData.map(p=>({id:p.id, name:p.name, tags:p.tags})))}.\n\nConversation so far:${conversationContext}\n\nAnalyze their latest message. Return your answer securely as raw JSON mapping EXACTLY to this schema: {"id":"product ID from inventory OR null if just chatting", "reason":"One highly poetic, deeply persuasive sentence explaining why this stone solves their problem, or your response if no stone is needed"}. Do NOT output markdown. Just stringified JSON.`;
        
-       fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+       fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
            method: 'POST',
            headers: {'Content-Type': 'application/json'},
            body: JSON.stringify({ contents: [{ parts: [{ text: geminiPrompt }] }] })
        })
        .then(r => r.json())
        .then(data => {
+           if (data.error) {
+              document.getElementById(typingId)?.remove();
+              appendMessage(`[System] Gemini API Issue: ${data.error.message}. Please check your API key in .env`, false, false);
+              return;
+           }
            try {
               const text = data.candidates[0].content.parts[0].text;
               const jsonStr = text.replace(/```json/g,'').replace(/```/g,'').trim();
@@ -140,9 +145,13 @@ document.addEventListener('DOMContentLoaded', () => {
               const p = parsed.id ? productsData.find(x => x.id === parsed.id) : null;
               renderResult(p, parsed.reason);
            } catch(e) {
+              console.error("Gemini Output Parsing Failed:", e, data);
               fallbackLogic();
            }
-       }).catch(() => fallbackLogic());
+       }).catch((err) => {
+           document.getElementById(typingId)?.remove();
+           appendMessage(`[System] Network Error contacting Gemini: ${err.message}`, false, false);
+       });
     } else {
       fallbackLogic();
     }

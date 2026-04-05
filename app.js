@@ -239,15 +239,50 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(s);
   }
 
-  // Phase 8: Smart Product Search
+  // Phase 10: Fuzzy Smart Product Search (Levenshtein Distance)
+  function levenshtein(a, b) {
+    const m = a.length, n = b.length;
+    const dp = Array.from({length: m + 1}, () => Array(n + 1).fill(0));
+    for (let i = 0; i <= m; i++) dp[i][0] = i;
+    for (let j = 0; j <= n; j++) dp[0][j] = j;
+    for (let i = 1; i <= m; i++) {
+      for (let j = 1; j <= n; j++) {
+        dp[i][j] = Math.min(
+          dp[i-1][j] + 1,
+          dp[i][j-1] + 1,
+          dp[i-1][j-1] + (a[i-1] !== b[j-1] ? 1 : 0)
+        );
+      }
+    }
+    return dp[m][n];
+  }
+
+  function fuzzyMatch(term, text, threshold) {
+    if (!term) return true;
+    if (text.includes(term)) return true;
+    // Check each word in the text against the search term
+    const words = text.split(/[\s,]+/);
+    for (const word of words) {
+      if (word.length > 2 && levenshtein(term, word) <= threshold) return true;
+      // Also check if the term is a substring with tolerance
+      if (word.includes(term) || term.includes(word)) return true;
+    }
+    return false;
+  }
+
   const searchInput = document.getElementById('product-search');
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
-      const term = e.target.value.toLowerCase();
+      const term = e.target.value.toLowerCase().trim();
+      if (!term) {
+        document.querySelectorAll('.product-card').forEach(card => card.style.display = 'flex');
+        return;
+      }
       document.querySelectorAll('.product-card').forEach(card => {
         const name = card.dataset.name.toLowerCase();
         const tags = card.dataset.tags.toLowerCase();
-        if (name.includes(term) || tags.includes(term)) {
+        const threshold = term.length <= 4 ? 1 : 2; // tighter threshold for short words
+        if (fuzzyMatch(term, name, threshold) || fuzzyMatch(term, tags, threshold)) {
           card.style.display = 'flex';
         } else {
           card.style.display = 'none';
