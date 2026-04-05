@@ -30,4 +30,4 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-Sitemap: https://gemessence.com/sitemap.xml
+Sitemap: https://www.gemessence.com/sitemap.xml

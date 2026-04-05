@@ -1,42 +1,95 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
 
+/* ─── Global Typography ─── */
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   color: #242424;
+  letter-spacing: 0.01em;
+  line-height: 1.7;
 }
 
 h1, h2, h3, h4, h5, h6, .font-serif {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Playfair Display', Georgia, serif;
+  letter-spacing: 0.02em;
 }
 
+/* ─── Product Card Premium Micro-Interactions ─── */
 .product-card {
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color 0.3s ease;
+  will-change: transform;
 }
 
 .product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 25px -5px rgba(36, 36, 36, 0.1), 0 10px 10px -5px rgba(36, 36, 36, 0.04);
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px -12px rgba(212, 175, 55, 0.15),
+              0 12px 24px -8px rgba(36, 36, 36, 0.08);
+  border-color: rgba(212, 175, 55, 0.3);
 }
 
+/* Image zoom on card hover */
+.product-card .aspect-square img {
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.product-card:hover .aspect-square img {
+  transform: scale(1.05);
+}
+
+/* Add-to-cart button glow on card hover */
+.product-card:hover .add-to-cart {
+  background-color: #242424;
+  color: #f8f6f5;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+/* ─── Cart Sidebar ─── */
 .cart-open {
   overflow: hidden;
 }
 
-/* Custom Scrollbar */
+/* ─── Smooth Link Underlines ─── */
+a {
+  transition: color 0.3s ease;
+}
+
+/* ─── Premium Scrollbar ─── */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f2efe3;
+  background: #f8f6f5;
 }
 ::-webkit-scrollbar-thumb {
-  background: #304254;
-  border-radius: 4px;
+  background: linear-gradient(180deg, #D4AF37, #242424);
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #242424;
+}
+
+/* ─── Selection Color ─── */
+::selection {
+  background: rgba(212, 175, 55, 0.2);
+  color: #242424;
+}
+
+/* ─── Chatbot Pulse Animation ─── */
+@keyframes gentle-pulse {
+  0%, 100% { box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4); }
+  50% { box-shadow: 0 10px 30px rgba(212, 175, 55, 0.6); }
+}
+
+#chat-toggle {
+  animation: gentle-pulse 3s ease-in-out infinite;
+}
+
+/* ─── Hero Section Gradient Enhancement ─── */
+.hero-gradient {
+  background: linear-gradient(180deg, #f8f6f5 0%, #ede8dc 50%, #e2dcd0 100%);
 }
