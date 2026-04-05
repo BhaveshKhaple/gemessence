@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let productsData = [];
   fetch('src/data/products.json').then(r=>r.json()).then(d=>productsData=d);
+  let conversationContext = "";
 
   let geminiInternalKey = '';
   // Dev-only: Parse local .env file securely into memory
@@ -105,6 +106,9 @@ document.addEventListener('DOMContentLoaded', () => {
           const desc = reason ? reason : product.description;
           const reply = `The universe aligns with the <b class="font-serif text-brand-accent text-base">${product.name}</b>!<br/><br/><span class="text-xs opacity-90">${desc}</span><br/><br/><button class="w-full mt-3 bg-brand-dark text-white px-4 py-2 uppercase tracking-wide text-xs font-bold hover:bg-brand-accent transition-colors rounded shadow-md" onclick="window.chatbotAddToCart('${product.id}')">Add to Cart - $${product.price.toFixed(2)}</button>`;
           appendMessage(reply, false, true);
+        } else if (reason) {
+          // Pure conversational reply
+          appendMessage(reason, false, false);
         } else {
           appendMessage("I'm sensing a unique energy, but I'm not sure which crystal fits best. Maybe try searching for attributes like <b>'courage'</b>, <b>'wealth'</b>, or <b>'healing'</b>.", false, true);
         }
@@ -118,7 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (apiKey && apiKey.length > 10) {
-       const geminiPrompt = `You are a mystical Crystal Guide AI for an online store called 'Gemessence'. A user says: "${val}". Our inventory is exclusively: ${JSON.stringify(productsData.map(p=>({id:p.id, name:p.name, tags:p.tags})))}$. Analyze their energetic needs and pick the best single product ID. Return your answer securely as raw JSON: {"id":"product format", "reason":"One highly poetic, deeply persuasive sentence explaining why this stone solves their problem"}. Do NOT output markdown. Just the stringified JSON.`;
+       conversationContext += `\nUser: ${val}`;
+       const geminiPrompt = `You are a mystical Crystal Guide AI for an online store called 'Gemessence'. Our inventory is exclusively: ${JSON.stringify(productsData.map(p=>({id:p.id, name:p.name, tags:p.tags})))}.\n\nConversation so far:${conversationContext}\n\nAnalyze their latest message. Return your answer securely as raw JSON mapping EXACTLY to this schema: {"id":"product ID from inventory OR null if just chatting", "reason":"One highly poetic, deeply persuasive sentence explaining why this stone solves their problem, or your response if no stone is needed"}. Do NOT output markdown. Just stringified JSON.`;
        
        fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
            method: 'POST',
@@ -131,9 +136,9 @@ document.addEventListener('DOMContentLoaded', () => {
               const text = data.candidates[0].content.parts[0].text;
               const jsonStr = text.replace(/```json/g,'').replace(/```/g,'').trim();
               const parsed = JSON.parse(jsonStr);
-              const p = productsData.find(x => x.id === parsed.id);
-              if (p) renderResult(p, parsed.reason);
-              else fallbackLogic();
+              conversationContext += `\nAssistant: ${parsed.reason}`;
+              const p = parsed.id ? productsData.find(x => x.id === parsed.id) : null;
+              renderResult(p, parsed.reason);
            } catch(e) {
               fallbackLogic();
            }
