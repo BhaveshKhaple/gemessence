@@ -31,15 +31,15 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FRONT-01    | Phase 2 | Pending |
-| FRONT-02    | Phase 2 | Pending |
-| FRONT-03    | Phase 3 | Pending |
+| FRONT-01    | Phase 2 | ✅ Done |
+| FRONT-02    | Phase 2 | ✅ Done |
+| FRONT-03    | Phase 3 | ✅ Done |
 | DATA-01     | Phase 1 | ✅ Done |
-| DATA-02     | Phase 2 | Pending |
-| MKTG-01     | Phase 6 | Pending |
-| MKTG-02     | Phase 4 | Pending |
-| MKTG-03     | Phase 4 | Pending |
-| MKTG-04     | Phase 5 | Pending |
+| DATA-02     | Phase 2 | ✅ Done |
+| MKTG-01     | Phase 6 | ✅ Done |
+| MKTG-02     | Phase 4 | ✅ Done |
+| MKTG-03     | Phase 4 | ✅ Done |
+| MKTG-04     | Phase 5 | ✅ Done |
 
 **Coverage:**
 - v1 requirements: 9 total

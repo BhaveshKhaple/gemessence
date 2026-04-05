@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google Analytics 4 (GA4) Placeholder -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gemessence - Authentic Gemstone Bracelets</title>
+  <title>Gemessence | Premium Authentic Gemstone Bracelets & Healing Crystals</title>
+  <meta name="description" content="Discover our exclusive collection of authentic gemstone bracelets. Enhance your aura with amethyst, calm, healing, spiritual, sleep, protection, purple, meditation, third-eye, birthstone, carnelian, energy, chakra, vitality, motivation. Shop premium quality healing crystals today.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
   <script>
@@ -97,6 +106,21 @@
 
   <div id="cart-overlay" class="fixed inset-0 bg-brand-dark/40 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-300 ease-in-out"></div>
 
+  <!-- Marketing Popup Modal (Phase 4) -->
+  <div id="marketing-popup" class="fixed inset-0 bg-brand-dark/50 backdrop-blur-sm z-[60] hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4 text-center">
+    <div class="bg-brand-cream max-w-sm w-full p-8 shadow-2xl relative border border-brand-dark/20">
+      <button id="close-popup" class="absolute top-4 right-4 text-brand-dark/50 hover:text-brand-dark font-bold text-xl focus:outline-none">&times;</button>
+      <h3 class="font-serif text-2xl font-bold mb-2 text-brand-dark">Unlock 10% Off</h3>
+      <p class="text-sm mb-6 text-brand-dark/80">Subscribe to our newsletter and get your exclusive discount code instantly.</p>
+      <form id="subscribe-form" class="flex flex-col gap-3">
+        <input type="email" id="subscriber-email" required placeholder="Enter your email" class="px-4 py-3 border border-brand-dark/20 focus:outline-none focus:border-brand-accent bg-transparent placeholder-brand-dark/40 text-sm">
+        <button type="submit" class="bg-brand-dark text-brand-cream px-4 py-3 uppercase tracking-widest font-semibold hover:bg-brand-accent transition-colors">Subscribe</button>
+      </form>
+      <p id="subscribe-success" class="hidden text-brand-accent mt-4 font-bold tracking-wide">Success! Code: GEM10</p>
+    </div>
+  </div>
+
   <script src="app.js"></script>
+  <script src="chatbot.js"></script>
 </body>
 </html>

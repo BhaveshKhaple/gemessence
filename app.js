@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       card.innerHTML = `
         <div class="aspect-square overflow-hidden bg-brand-cream relative group">
-          <img src="${product.imageUrl}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out" loading="lazy">
+          <img src="${product.imageUrl}" alt="${product.name} - Handmade Gemstone Jewelry featuring ${product.tags.slice(0,5).join(', ')}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out" loading="lazy">
           <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
              <div class="flex flex-wrap gap-1">${tagsHtml}</div>
           </div>
@@ -212,4 +212,31 @@ document.addEventListener('DOMContentLoaded', () => {
   cartToggle.addEventListener('click', openCart);
   closeCart.addEventListener('click', closeCartPanel);
   cartOverlay.addEventListener('click', closeCartPanel);
+
+  // Phase 4: Marketing Popup Logic
+  setTimeout(() => {
+    if (!localStorage.getItem('gemessence_subscribed')) {
+      document.getElementById('marketing-popup').classList.remove('hidden');
+      setTimeout(() => document.getElementById('marketing-popup').classList.remove('opacity-0'), 50);
+    }
+  }, 3000);
+
+  document.getElementById('close-popup').addEventListener('click', () => {
+    document.getElementById('marketing-popup').classList.add('opacity-0');
+    setTimeout(() => document.getElementById('marketing-popup').classList.add('hidden'), 300);
+  });
+
+  document.getElementById('subscribe-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('subscriber-email').value;
+    let subs = JSON.parse(localStorage.getItem('gemessence_subscribers')) || [];
+    subs.push(email);
+    localStorage.setItem('gemessence_subscribers', JSON.stringify(subs));
+    localStorage.setItem('gemessence_subscribed', 'true');
+    document.getElementById('subscribe-success').classList.remove('hidden');
+    e.target.reset();
+    setTimeout(() => {
+      document.getElementById('close-popup').click();
+    }, 2500);
+  });
 });
