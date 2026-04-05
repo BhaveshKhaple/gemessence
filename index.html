@@ -24,8 +24,23 @@
   </script>
 
   <meta name="description" content="Discover our exclusive collection of authentic gemstone bracelets. Enhance your aura with amethyst, calm, healing, spiritual, sleep, protection, purple, meditation, third-eye, birthstone, carnelian, energy, chakra, vitality, motivation. Shop premium quality healing crystals today.">
+  
+  <!-- Open Graph / Social SEO -->
+  <meta property="og:title" content="Gemessence | Premium Authentic Gemstone Bracelets">
+  <meta property="og:description" content="Enhance your aura with our exclusive collection of healing crystals and handcrafted gemstone bracelets.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://placehold.co/1200x630/242424/D4AF37?text=Gemessence">
+  <meta name="twitter:card" content="summary_large_image">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
+  <!-- EmailJS Library (Phase 9) -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function(){
+      emailjs.init({ publicKey: "YOUR_EMAILJS_PUBLIC_KEY" });
+    })();
+  </script>
   <script>
     tailwind.config = {
       theme: {
@@ -59,6 +74,7 @@
     </div>
   </header>
 
+  <main id="content">
   <!-- Hero Section -->
   <section class="mt-20 pt-16 pb-24 px-6 relative flex flex-col items-center justify-center text-center min-h-[60vh] bg-gradient-to-b from-brand-cream to-[#e8e4d3]">
     <!-- Decorative elements from reference -->
@@ -98,6 +114,18 @@
       </div>
     </div>
   </section>
+  </main>
+
+  <footer class="bg-brand-dark text-brand-cream py-10 px-6 border-t border-brand-accent/20 relative z-40">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-sm opacity-80">
+      <p class="font-serif tracking-widest uppercase">© 2026 Gemessence.</p>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-brand-accent transition-colors">Privacy</a>
+        <a href="#" class="hover:text-brand-accent transition-colors">Terms</a>
+        <a href="#" class="hover:text-brand-accent transition-colors">Shipping</a>
+      </div>
+    </div>
+  </footer>
 
   <!-- Cart Sidebar (Phase 3 + 7 Aesthetic Upgrade) -->
   <div id="cart-sidebar" class="fixed inset-y-0 right-0 w-full md:w-[400px] bg-brand-cream/80 backdrop-blur-xl shadow-[0_0_40px_rgba(0,0,0,0.1)] transform translate-x-full transition-transform duration-500 ease-in-out z-50 flex flex-col border-l border-white/40">

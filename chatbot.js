@@ -38,6 +38,20 @@ document.addEventListener('DOMContentLoaded', () => {
   let productsData = [];
   fetch('src/data/products.json').then(r=>r.json()).then(d=>productsData=d);
 
+  let geminiInternalKey = '';
+  // Dev-only: Parse local .env file securely into memory
+  fetch('.env').then(r => r.text()).then(txt => {
+      const match = txt.match(/GEMINI_API_KEY=(.*)/);
+      if(match && match[1]) {
+          geminiInternalKey = match[1].trim();
+          const btn = document.getElementById('set-api-key');
+          if(btn) {
+             btn.innerText = '.ENV Linked';
+             btn.classList.add('bg-brand-accent', 'text-white');
+          }
+      }
+  }).catch(() => {});
+
   chatToggle.addEventListener('click', () => {
     chatWindow.classList.toggle('hidden');
     if(!chatWindow.classList.contains('hidden')) chatInput.focus();
@@ -83,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     chatMessages.appendChild(typingDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
-    const apiKey = localStorage.getItem('GEMINI_API_KEY');
+    const apiKey = geminiInternalKey || localStorage.getItem('GEMINI_API_KEY');
 
     function renderResult(product, reason) {
         document.getElementById(typingId)?.remove();

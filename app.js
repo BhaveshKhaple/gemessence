@@ -274,14 +274,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('subscribe-form').addEventListener('submit', (e) => {
     e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const originalText = btn.innerText;
+    btn.innerText = 'Sending...';
+    btn.disabled = true;
+
     const email = document.getElementById('subscriber-email').value;
+    
+    // Phase 9: EmailJS Integration
+    const templateParams = {
+        to_email: email,
+        discount_code: 'GEM10'
+    };
+
+    try {
+      emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+        .then(() => console.log('Welcome Email Dispatched via EmailJS!'))
+        .catch(err => console.warn('EmailJS not configured yet, capturing lead locally...', err));
+    } catch(err) {}
+
     let subs = JSON.parse(localStorage.getItem('gemessence_subscribers')) || [];
     subs.push(email);
     localStorage.setItem('gemessence_subscribers', JSON.stringify(subs));
     localStorage.setItem('gemessence_subscribed', 'true');
     document.getElementById('subscribe-success').classList.remove('hidden');
     e.target.reset();
+    
     setTimeout(() => {
+      btn.innerText = originalText;
+      btn.disabled = false;
       document.getElementById('close-popup').click();
     }, 2500);
   });
