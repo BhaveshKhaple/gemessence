@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemessence - Authentic Gemstone Bracelets</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              cream: '#f2efe3',
+              dark: '#242424',
+              accent: '#304254'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-brand-cream text-brand-dark font-sans antialiased overflow-x-hidden">
+  
+  <!-- Navbar -->
+  <header class="fixed w-full top-0 bg-brand-cream/90 backdrop-blur-md z-40 border-b border-brand-dark/10">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+      <h1 class="text-2xl font-bold tracking-widest uppercase font-serif">Gemessence</h1>
+      <button id="cart-toggle" class="relative p-2 hover:bg-brand-dark/5 rounded-full transition-colors focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-brand-dark" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span id="cart-count" class="absolute -top-1 -right-1 bg-brand-accent text-white text-[10px] rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-md hidden">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="mt-20 pt-16 pb-24 px-6 relative flex flex-col items-center justify-center text-center min-h-[60vh] bg-gradient-to-b from-brand-cream to-[#e8e4d3]">
+    <!-- Decorative elements from reference -->
+    <h2 class="text-5xl md:text-7xl font-serif text-brand-dark mb-6 tracking-wide drop-shadow-sm">GEM ESSENCE <br>BRACELET</h2>
+    <p class="text-lg md:text-xl max-w-2xl text-brand-dark/80 mb-10 leading-relaxed font-light">Purify Your Aura With Premium Quality Bracelets. Unlock the powerful benefits of a crystal bracelet: it elevates your style while letting you harness their healing energies.</p>
+    <a href="#shop" class="bg-brand-dark text-brand-cream px-10 py-4 uppercase tracking-widest font-semibold hover:bg-brand-accent transition-all transform hover:-translate-y-1 shadow-lg">Explore Collection</a>
+  </section>
+
+  <!-- Product Grid Section -->
+  <section id="shop" class="max-w-7xl mx-auto px-6 py-20">
+    <div class="text-center mb-16">
+      <h3 class="text-3xl md:text-4xl font-serif uppercase tracking-widest text-brand-dark">Much More to Explore</h3>
+      <p class="mt-4 text-brand-dark/70 uppercase tracking-widest text-sm">Discover our genuine gemstone collection</p>
+    </div>
+    
+    <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+      <!-- Injected by JS -->
+      <div class="col-span-full flex justify-center py-20">
+        <div class="animate-pulse flex space-x-4">
+          <div class="flex-1 space-y-6 py-1">
+            <div class="h-64 bg-brand-dark/10 rounded w-full"></div>
+            <div class="space-y-3">
+              <div class="grid grid-cols-3 gap-4">
+                <div class="h-4 bg-brand-dark/10 rounded col-span-2"></div>
+                <div class="h-4 bg-brand-dark/10 rounded col-span-1"></div>
+              </div>
+              <div class="h-4 bg-brand-dark/10 rounded"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart Sidebar (Phase 3) -->
+  <div id="cart-sidebar" class="fixed inset-y-0 right-0 w-full md:w-[400px] bg-[#f9f8f4] shadow-2xl transform translate-x-full transition-transform duration-500 ease-in-out z-50 flex flex-col border-l border-brand-dark/10">
+    <div class="p-6 border-b border-brand-dark/10 flex justify-between items-center bg-[#f9f8f4]">
+      <h2 class="text-2xl font-serif uppercase tracking-wider text-brand-dark">Your Cart</h2>
+      <button id="close-cart" class="p-2 hover:bg-brand-dark/5 rounded-full transition-colors text-brand-dark focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    
+    <div id="cart-items" class="flex-1 overflow-y-auto p-6 flex flex-col gap-6 scroll-smooth">
+      <!-- Injected by JS -->
+    </div>
+    
+    <div class="p-6 border-t border-brand-dark/10 bg-[#f9f8f4]">
+      <div class="flex justify-between items-center mb-6 text-xl">
+        <span class="font-light tracking-wide text-brand-dark">Total</span>
+        <span id="cart-total" class="font-bold font-serif">$0.00</span>
+      </div>
+      <button class="w-full bg-brand-dark text-brand-cream py-4 uppercase tracking-widest font-semibold hover:bg-brand-accent transition-colors shadow-lg">Checkout</button>
+    </div>
+  </div>
+
+  <div id="cart-overlay" class="fixed inset-0 bg-brand-dark/40 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-300 ease-in-out"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

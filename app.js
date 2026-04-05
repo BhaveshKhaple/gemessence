@@ -1,0 +1,215 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const productGrid = document.getElementById('product-grid');
+  const cartToggle = document.getElementById('cart-toggle');
+  const closeCart = document.getElementById('close-cart');
+  const cartSidebar = document.getElementById('cart-sidebar');
+  const cartOverlay = document.getElementById('cart-overlay');
+  const cartItemsContainer = document.getElementById('cart-items');
+  const cartTotalEl = document.getElementById('cart-total');
+  const cartCountEl = document.getElementById('cart-count');
+
+  let products = [];
+  let cart = JSON.parse(localStorage.getItem('gemessence_cart')) || [];
+
+  // Fetch products
+  fetch('src/data/products.json')
+    .then(res => res.json())
+    .then(data => {
+      products = data;
+      renderProducts();
+      updateCartUI();
+    })
+    .catch(err => {
+      console.error('Failed to load products:', err);
+      productGrid.innerHTML = '<div class="col-span-full text-red-500 text-center py-20 font-serif text-2xl">Failed to load product catalog. Please try refreshing.</div>';
+    });
+
+  function renderProducts() {
+    productGrid.innerHTML = '';
+    
+    products.forEach(product => {
+      const card = document.createElement('div');
+      card.className = 'product-card bg-white flex flex-col hover-trigger rounded-sm overflow-hidden';
+      
+      const tagsHtml = product.tags.slice(0, 3).map(tag => `<span class="text-[10px] uppercase tracking-wider px-2 py-1 bg-brand-cream/80 text-brand-dark/70 rounded-sm">${tag}</span>`).join('');
+      
+      card.innerHTML = `
+        <div class="aspect-square overflow-hidden bg-brand-cream relative group">
+          <img src="${product.imageUrl}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out" loading="lazy">
+          <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+             <div class="flex flex-wrap gap-1">${tagsHtml}</div>
+          </div>
+        </div>
+        <div class="p-6 flex flex-col flex-1 border border-t-0 border-brand-dark/10">
+          <h4 class="font-serif text-xl font-semibold mb-2 line-clamp-1">${product.name}</h4>
+          <p class="text-sm font-light text-brand-dark/70 mb-4 line-clamp-2 leading-relaxed">${product.description}</p>
+          <div class="flex justify-between items-center mt-auto pt-4 border-t border-brand-dark/10">
+            <span class="font-serif text-xl font-bold">$${product.price.toFixed(2)}</span>
+            <button class="add-to-cart p-2.5 bg-brand-cream border border-brand-dark/20 text-brand-dark hover:bg-brand-dark hover:text-brand-cream transition-colors rounded-full focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2" data-id="${product.id}" aria-label="Add to cart">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </button>
+          </div>
+        </div>
+      `;
+      productGrid.appendChild(card);
+    });
+
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const id = e.currentTarget.dataset.id;
+        addToCart(id);
+        
+        // Visual feedback
+        const originalBg = e.currentTarget.style.backgroundColor;
+        e.currentTarget.style.backgroundColor = '#304254';
+        e.currentTarget.style.color = '#f2efe3';
+        setTimeout(() => {
+          e.currentTarget.style.backgroundColor = originalBg;
+          e.currentTarget.style.color = '';
+        }, 300);
+      });
+    });
+  }
+
+  function addToCart(id) {
+    const product = products.find(p => p.id === id);
+    if (!product) return;
+    
+    const existing = cart.find(item => item.id === id);
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      cart.push({ ...product, quantity: 1 });
+    }
+    
+    saveCart();
+    updateCartUI();
+    openCart();
+  }
+
+  function removeFromCart(id) {
+    const el = document.querySelector(`.cart-item[data-id="${id}"]`);
+    if (el) {
+      el.style.opacity = '0';
+      el.style.transform = 'translateX(20px)';
+      setTimeout(() => {
+        cart = cart.filter(item => item.id !== id);
+        saveCart();
+        updateCartUI();
+      }, 300);
+    } else {
+      cart = cart.filter(item => item.id !== id);
+      saveCart();
+      updateCartUI();
+    }
+  }
+
+  function updateQuantity(id, delta) {
+    const item = cart.find(i => i.id === id);
+    if (item) {
+      item.quantity += delta;
+      if (item.quantity <= 0) {
+        removeFromCart(id);
+      } else {
+        saveCart();
+        updateCartUI();
+      }
+    }
+  }
+
+  function saveCart() {
+    localStorage.setItem('gemessence_cart', JSON.stringify(cart));
+  }
+
+  function updateCartUI() {
+    cartItemsContainer.innerHTML = '';
+    
+    let total = 0;
+    let count = 0;
+
+    if (cart.length === 0) {
+      cartItemsContainer.innerHTML = `
+        <div class="flex flex-col items-center justify-center h-full text-center text-brand-dark/50 space-y-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="opacity-50"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <p class="font-serif text-lg tracking-wide">Your cart is empty.</p>
+          <button class="mt-4 border-b border-brand-dark text-brand-dark hover:text-brand-accent pb-1 transition-colors" onclick="document.getElementById('close-cart').click()">Continue Shopping</button>
+        </div>
+      `;
+    } else {
+      cart.forEach(item => {
+        total += item.price * item.quantity;
+        count += item.quantity;
+        
+        const el = document.createElement('div');
+        el.className = 'cart-item flex gap-4 items-center bg-white p-4 border border-brand-dark/10 shadow-sm transition-all duration-300 rounded-sm';
+        el.dataset.id = item.id;
+        el.innerHTML = `
+          <img src="${item.imageUrl}" alt="${item.name}" class="w-20 h-20 object-cover bg-brand-cream rounded-sm">
+          <div class="flex-1 flex flex-col h-20 justify-between">
+            <div class="flex justify-between items-start">
+              <h5 class="font-serif text-sm font-semibold line-clamp-2 pr-2">${item.name}</h5>
+              <button class="remove-item text-brand-dark/40 hover:text-red-500 transition-colors focus:outline-none" data-id="${item.id}" aria-label="Remove item">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <button class="w-6 h-6 flex items-center justify-center border border-brand-dark/20 decrease-qty hover:bg-brand-cream hover:text-brand-accent transition-colors rounded-sm focus:outline-none" data-id="${item.id}">-</button>
+                <span class="text-sm font-light w-4 text-center">${item.quantity}</span>
+                <button class="w-6 h-6 flex items-center justify-center border border-brand-dark/20 increase-qty hover:bg-brand-cream hover:text-brand-accent transition-colors rounded-sm focus:outline-none" data-id="${item.id}">+</button>
+              </div>
+              <div class="text-brand-accent font-semibold">$${(item.price * item.quantity).toFixed(2)}</div>
+            </div>
+          </div>
+        `;
+        cartItemsContainer.appendChild(el);
+      });
+    }
+
+    cartTotalEl.textContent = `$${total.toFixed(2)}`;
+    cartCountEl.textContent = count;
+    
+    if (count === 0) {
+      cartCountEl.classList.add('hidden');
+    } else {
+      cartCountEl.classList.remove('hidden');
+      // small pop animation
+      cartCountEl.classList.add('scale-125');
+      setTimeout(() => cartCountEl.classList.remove('scale-125'), 150);
+    }
+
+    document.querySelectorAll('.increase-qty').forEach(btn => {
+      btn.addEventListener('click', e => updateQuantity(e.currentTarget.dataset.id, 1));
+    });
+    document.querySelectorAll('.decrease-qty').forEach(btn => {
+      btn.addEventListener('click', e => updateQuantity(e.currentTarget.dataset.id, -1));
+    });
+    document.querySelectorAll('.remove-item').forEach(btn => {
+      btn.addEventListener('click', e => removeFromCart(e.currentTarget.dataset.id));
+    });
+  }
+
+  // Cart Toggle Logic
+  function openCart() {
+    cartOverlay.classList.remove('hidden');
+    // slight delay to ensure display:block applies before opacity
+    requestAnimationFrame(() => {
+      cartOverlay.classList.remove('opacity-0');
+      cartSidebar.classList.remove('translate-x-full');
+    });
+    document.body.classList.add('cart-open');
+  }
+
+  function closeCartPanel() {
+    cartSidebar.classList.add('translate-x-full');
+    cartOverlay.classList.add('opacity-0');
+    setTimeout(() => {
+      cartOverlay.classList.add('hidden');
+      document.body.classList.remove('cart-open');
+    }, 300); // match transition duration
+  }
+
+  cartToggle.addEventListener('click', openCart);
+  closeCart.addEventListener('click', closeCartPanel);
+  cartOverlay.addEventListener('click', closeCartPanel);
+});
