@@ -6,7 +6,18 @@
     "price": 34.99,
     "imageUrl": "https://gemessencebracelet.my.canva.site/gem-essence-bracelet/_assets/media/c013a85e49b1747db4e54045b28010ed.jpg",
     "imageUrlHD": "https://gemessencebracelet.my.canva.site/gem-essence-bracelet/_assets/media/059800a734b026ebac02c270f384e5cb.jpg",
-    "tags": ["amethyst", "calm", "healing", "spiritual", "sleep", "protection", "purple", "meditation", "third-eye", "birthstone"]
+    "tags": [
+      "amethyst",
+      "calm",
+      "healing",
+      "spiritual",
+      "sleep",
+      "protection",
+      "purple",
+      "meditation",
+      "third-eye",
+      "birthstone"
+    ]
   },
   {
     "id": "B02",
@@ -15,7 +26,17 @@
     "price": 29.99,
     "imageUrl": "https://gemessencebracelet.my.canva.site/gem-essence-bracelet/_assets/media/b0d2c275e1f5827f8d1f1332ab18c784.jpg",
     "imageUrlHD": "https://gemessencebracelet.my.canva.site/gem-essence-bracelet/_assets/media/b0d2c275e1f5827f8d1f1332ab18c784.jpg",
-    "tags": ["carnelian", "energy", "chakra", "vitality", "motivation", "endurance", "orange", "transformation", "courage"]
+    "tags": [
+      "carnelian",
+      "energy",
+      "chakra",
+      "vitality",
+      "motivation",
+      "endurance",
+      "orange",
+      "transformation",
+      "courage"
+    ]
   },
   {
     "id": "B03",
@@ -24,7 +45,18 @@
     "price": 32.99,
     "imageUrl": "https://gemessencebracelet.my.canva.site/gem-essence-bracelet/_assets/media/d5e02261d0194f826815a230c05885aa.jpg",
     "imageUrlHD": "https://gemessencebracelet.my.canva.site/gem-essence-bracelet/_assets/media/0cdad7a5f424a6cb6698ace4fd7d7698.jpg",
-    "tags": ["rose-quartz", "love", "healing", "emotional", "peace", "confidence", "pink", "self-care", "compassion", "heart-chakra"]
+    "tags": [
+      "rose-quartz",
+      "love",
+      "healing",
+      "emotional",
+      "peace",
+      "confidence",
+      "pink",
+      "self-care",
+      "compassion",
+      "heart-chakra"
+    ]
   },
   {
     "id": "B04",
@@ -33,6 +65,337 @@
     "price": 39.99,
     "imageUrl": "https://gemessencebracelet.my.canva.site/gem-essence-bracelet/_assets/media/e6851fb0cfd98c41fb236e52170cb2cf.jpg",
     "imageUrlHD": "https://gemessencebracelet.my.canva.site/gem-essence-bracelet/_assets/media/e6851fb0cfd98c41fb236e52170cb2cf.jpg",
-    "tags": ["lapis-lazuli", "spiritual", "intuition", "meditation", "peace", "empathy", "blue", "third-eye", "awareness", "wisdom"]
+    "tags": [
+      "lapis-lazuli",
+      "spiritual",
+      "intuition",
+      "meditation",
+      "peace",
+      "empathy",
+      "blue",
+      "third-eye",
+      "awareness",
+      "wisdom"
+    ]
+  },
+  {
+    "id": "B05",
+    "name": "Tiger's Eye Courage Bracelet",
+    "description": "A powerful stone of courage and motivation. Enhances focus, vitality, and protection.",
+    "price": 26.51,
+    "imageUrl": "https://picsum.photos/seed/gembracelet0/600/600",
+    "imageUrlHD": "https://picsum.photos/seed/gembracelet0/1200/1200",
+    "tags": [
+      "tigers-eye",
+      "courage",
+      "motivation",
+      "focus",
+      "vitality",
+      "protection",
+      "brown",
+      "grounding",
+      "confidence",
+      "strength"
+    ]
+  },
+  {
+    "id": "B06",
+    "name": "Obsidian Shield Bracelet",
+    "description": "A strong protective stone that forms a shield against negativity. Draws out mental stress and tension.",
+    "price": 28.2,
+    "imageUrl": "https://picsum.photos/seed/gembracelet1/600/600",
+    "imageUrlHD": "https://picsum.photos/seed/gembracelet1/1200/1200",
+    "tags": [
+      "obsidian",
+      "protection",
+      "shield",
+      "grounding",
+      "stress-relief",
+      "black",
+      "strength",
+      "healing",
+      "purification",
+      "calm"
+    ]
+  },
+  {
+    "id": "B07",
+    "name": "Citrine Abundance Bracelet",
+    "description": "Known as the merchant's stone, bringing wealth, prosperity, and success. Imparts joy and enthusiasm.",
+    "price": 26.06,
+    "imageUrl": "https://picsum.photos/seed/gembracelet2/600/600",
+    "imageUrlHD": "https://picsum.photos/seed/gembracelet2/1200/1200",
+    "tags": [
+      "citrine",
+      "wealth",
+      "prosperity",
+      "success",
+      "joy",
+      "yellow",
+      "abundance",
+      "energy",
+      "optimism",
+      "manifestation"
+    ]
+  },
+  {
+    "id": "B08",
+    "name": "Moonstone Intuition Bracelet",
+    "description": "A stone for new beginnings, promoting inner growth and strength. Soothes emotional instability.",
+    "price": 42.01,
+    "imageUrl": "https://picsum.photos/seed/gembracelet3/600/600",
+    "imageUrlHD": "https://picsum.photos/seed/gembracelet3/1200/1200",
+    "tags": [
+      "moonstone",
+      "intuition",
+      "new-beginnings",
+      "strength",
+      "calm",
+      "white",
+      "lunar",
+      "healing",
+      "feminine",
+      "balance"
+    ]
+  },
+  {
+    "id": "B09",
+    "name": "Jade Harmony Bracelet",
+    "description": "A symbol of serenity and purity. Signifies wisdom gathered in tranquility and increases love.",
+    "price": 25.31,
+    "imageUrl": "https://picsum.photos/seed/gembracelet4/600/600",
+    "imageUrlHD": "https://picsum.photos/seed/gembracelet4/1200/1200",
+    "tags": [
+      "jade",
+      "harmony",
+      "serenity",
+      "purity",
+      "wisdom",
+      "green",
+      "love",
+      "luck",
+      "peace",
+      "nurturing"
+    ]
+  },
+  {
+    "id": "B10",
+    "name": "Clear Quartz Master Bracelet",
+    "description": "Amplify your energy and thought with this master healer. Absorbs, stores, releases energy.",
+    "price": 44.24,
+    "imageUrl": "https://picsum.photos/seed/gembracelet5/600/600",
+    "imageUrlHD": "https://picsum.photos/seed/gembracelet5/1200/1200",
+    "tags": [
+      "clear-quartz",
+      "healing",
+      "energy",
+      "amplification",
+      "clarity",
+      "white",
+      "master-healer",
+      "focus",
+      "power",
+      "light"
+    ]
+  },
+  {
+    "id": "B11",
+    "name": "Black Tourmaline Grounding",
+    "description": "Offers strong protection against electromagnetic smog and negative energy. Promotes laid-back attitude.",
+    "price": 36.86,
+    "imageUrl": "https://picsum.photos/seed/gembracelet6/600/600",
+    "imageUrlHD": "https://picsum.photos/seed/gembracelet6/1200/1200",
+    "tags": [
+      "black-tourmaline",
+      "grounding",
+      "protection",
+      "emf",
+      "calm",
+      "black",
+      "stability",
+      "focus",
+      "detox",
+      "mindful"
+    ]
+  },
+  {
+    "id": "B12",
+    "name": "Amazonite Truth Bracelet",
+    "description": "A soothing stone that calms the brain and nervous system. Aligns physical body with the etheric.",
+    "price": 43.35,
+    "imageUrl": "https://picsum.photos/seed/gembracelet7/600/600",
+    "imageUrlHD": "https://picsum.photos/seed/gembracelet7/1200/1200",
+    "tags": [
+      "amazonite",
+      "truth",
+      "soothing",
+      "calm",
+      "balance",
+      "blue-green",
+      "harmony",
+      "communication",
+      "hope",
+      "flow"
+    ]
+  },
+  {
+    "id": "B13",
+    "name": "Sodalite Logic Bracelet",
+    "description": "Brings order and calmness to the mind. Encourages rational thought, objectivity, and truth.",
+    "price": 36.12,
+    "imageUrl": "https://picsum.photos/seed/gembracelet8/600/600",
+    "imageUrlHD": "https://picsum.photos/seed/gembracelet8/1200/1200",
+    "tags": [
+      "sodalite",
+      "logic",
+      "calm",
+      "truth",
+      "objectivity",
+      "blue",
+      "intuition",
+      "clarity",
+      "understanding",
+      "focus"
+    ]
+  },
+  {
+    "id": "B14",
+    "name": "Malachite Transform Bracelet",
+    "description": "An important protection stone. Absorbs negative energies and pollutants from the atmosphere.",
+    "price": 29.57,
+    "imageUrl": "https://picsum.photos/seed/gembracelet9/600/600",
+    "imageUrlHD": "https://picsum.photos/seed/gembracelet9/1200/1200",
+    "tags": [
+      "malachite",
+      "transformation",
+      "protection",
+      "absorption",
+      "healing",
+      "green",
+      "growth",
+      "balance",
+      "change",
+      "power"
+    ]
+  },
+  {
+    "id": "B15",
+    "name": "Garnet Passion Bracelet",
+    "description": "Revitalizes, purifies, and balances energy. Brings serenity or passion as appropriate.",
+    "price": 44.07,
+    "imageUrl": "https://picsum.photos/seed/gembracelet10/600/600",
+    "imageUrlHD": "https://picsum.photos/seed/gembracelet10/1200/1200",
+    "tags": [
+      "garnet",
+      "passion",
+      "energy",
+      "balance",
+      "vitality",
+      "red",
+      "serenity",
+      "devotion",
+      "grounding",
+      "love"
+    ]
+  },
+  {
+    "id": "B16",
+    "name": "Labradorite Magic Bracelet",
+    "description": "A stone of transformation and magic. Clears, balances and protects the aura.",
+    "price": 42.84,
+    "imageUrl": "https://picsum.photos/seed/gembracelet11/600/600",
+    "imageUrlHD": "https://picsum.photos/seed/gembracelet11/1200/1200",
+    "tags": [
+      "labradorite",
+      "magic",
+      "transformation",
+      "protection",
+      "aura",
+      "grey",
+      "intuition",
+      "mystic",
+      "spiritual",
+      "vision"
+    ]
+  },
+  {
+    "id": "B17",
+    "name": "Aventurine Luck Bracelet",
+    "description": "Known as the Stone of Opportunity, thought to be the luckiest of all crystals.",
+    "price": 36.9,
+    "imageUrl": "https://picsum.photos/seed/gembracelet12/600/600",
+    "imageUrlHD": "https://picsum.photos/seed/gembracelet12/1200/1200",
+    "tags": [
+      "aventurine",
+      "luck",
+      "opportunity",
+      "creativity",
+      "green",
+      "success",
+      "prosperity",
+      "optimism",
+      "wealth",
+      "growth"
+    ]
+  },
+  {
+    "id": "B18",
+    "name": "Aquamarine Courage Bracelet",
+    "description": "A stone of courage with calming energies that reduce stress and quiet the mind.",
+    "price": 37.72,
+    "imageUrl": "https://picsum.photos/seed/gembracelet13/600/600",
+    "imageUrlHD": "https://picsum.photos/seed/gembracelet13/1200/1200",
+    "tags": [
+      "aquamarine",
+      "courage",
+      "calm",
+      "stress-relief",
+      "blue",
+      "peace",
+      "communication",
+      "soothing",
+      "water",
+      "flow"
+    ]
+  },
+  {
+    "id": "B19",
+    "name": "Hematite Focus Bracelet",
+    "description": "Grounds and protects us. Endows us with courage, strength, endurance and vitality.",
+    "price": 37.38,
+    "imageUrl": "https://picsum.photos/seed/gembracelet14/600/600",
+    "imageUrlHD": "https://picsum.photos/seed/gembracelet14/1200/1200",
+    "tags": [
+      "hematite",
+      "focus",
+      "grounding",
+      "protection",
+      "strength",
+      "grey",
+      "balance",
+      "vitality",
+      "logic",
+      "memory"
+    ]
+  },
+  {
+    "id": "B20",
+    "name": "Fluorite Clarity Bracelet",
+    "description": "Cleanses and stabilizes the aura. Absorbs and neutralizes negative energy and stress.",
+    "price": 47.97,
+    "imageUrl": "https://picsum.photos/seed/gembracelet15/600/600",
+    "imageUrlHD": "https://picsum.photos/seed/gembracelet15/1200/1200",
+    "tags": [
+      "fluorite",
+      "clarity",
+      "aura",
+      "protection",
+      "focus",
+      "purple",
+      "green",
+      "balance",
+      "cleansing",
+      "harmony"
+    ]
   }
 ]
