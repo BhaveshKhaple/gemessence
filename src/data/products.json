@@ -1,0 +1,38 @@
+[
+  {
+    "id": "B01",
+    "name": "Amethyst Serenity Bracelet",
+    "description": "A captivating purple quartz known for its stunning aesthetic appeal and numerous healing and spiritual benefits. Promotes calmness, relaxation, improved sleep quality, enhanced imagination, and protection from negative energies. Associated with spiritual awareness and the third eye chakra.",
+    "price": 34.99,
+    "imageUrl": "https://gemessencebracelet.my.canva.site/gem-essence-bracelet/_assets/media/c013a85e49b1747db4e54045b28010ed.jpg",
+    "imageUrlHD": "https://gemessencebracelet.my.canva.site/gem-essence-bracelet/_assets/media/059800a734b026ebac02c270f384e5cb.jpg",
+    "tags": ["amethyst", "calm", "healing", "spiritual", "sleep", "protection", "purple", "meditation", "third-eye", "birthstone"]
+  },
+  {
+    "id": "B02",
+    "name": "Carnelian Vitality Bracelet",
+    "description": "Bold and beautiful carnelian bracelets that bring big changes by connecting to the body's chakras. Known for boosting energy, motivation, and endurance — little gems of transformation that ignite your inner fire.",
+    "price": 29.99,
+    "imageUrl": "https://gemessencebracelet.my.canva.site/gem-essence-bracelet/_assets/media/b0d2c275e1f5827f8d1f1332ab18c784.jpg",
+    "imageUrlHD": "https://gemessencebracelet.my.canva.site/gem-essence-bracelet/_assets/media/b0d2c275e1f5827f8d1f1332ab18c784.jpg",
+    "tags": ["carnelian", "energy", "chakra", "vitality", "motivation", "endurance", "orange", "transformation", "courage"]
+  },
+  {
+    "id": "B03",
+    "name": "Rose Quartz Love Bracelet",
+    "description": "Believed to have powerful energetic properties that promote love, healing, emotional well-being, and self-confidence. Helps attract love, heal emotional wounds, encourage inner peace, and enhance self-confidence. A timeless symbol of compassion.",
+    "price": 32.99,
+    "imageUrl": "https://gemessencebracelet.my.canva.site/gem-essence-bracelet/_assets/media/d5e02261d0194f826815a230c05885aa.jpg",
+    "imageUrlHD": "https://gemessencebracelet.my.canva.site/gem-essence-bracelet/_assets/media/0cdad7a5f424a6cb6698ace4fd7d7698.jpg",
+    "tags": ["rose-quartz", "love", "healing", "emotional", "peace", "confidence", "pink", "self-care", "compassion", "heart-chakra"]
+  },
+  {
+    "id": "B04",
+    "name": "Lapis Lazuli Insight Bracelet",
+    "description": "Associated with the third eye chakra, Lapis Lazuli helps release emotions, promotes positive self-expression, and provides inner peace. A powerful meditation aid that enhances spiritual awareness, intuition, and psychic abilities.",
+    "price": 39.99,
+    "imageUrl": "https://gemessencebracelet.my.canva.site/gem-essence-bracelet/_assets/media/e6851fb0cfd98c41fb236e52170cb2cf.jpg",
+    "imageUrlHD": "https://gemessencebracelet.my.canva.site/gem-essence-bracelet/_assets/media/e6851fb0cfd98c41fb236e52170cb2cf.jpg",
+    "tags": ["lapis-lazuli", "spiritual", "intuition", "meditation", "peace", "empathy", "blue", "third-eye", "awareness", "wisdom"]
+  }
+]

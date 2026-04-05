@@ -34,7 +34,7 @@
 | FRONT-01    | Phase 2 | Pending |
 | FRONT-02    | Phase 2 | Pending |
 | FRONT-03    | Phase 3 | Pending |
-| DATA-01     | Phase 1 | Pending |
+| DATA-01     | Phase 1 | ✅ Done |
 | DATA-02     | Phase 2 | Pending |
 | MKTG-01     | Phase 6 | Pending |
 | MKTG-02     | Phase 4 | Pending |
