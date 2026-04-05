@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const reply = `I recommend the <b>${p.name}</b>!<br/><br/><span class="text-xs opacity-90">${p.description}</span><br/><br/><button class="w-full mt-2 bg-brand-dark text-white px-3 py-2 uppercase tracking-wide text-xs font-bold hover:bg-brand-accent transition-colors rounded-sm" onclick="window.chatbotAddToCart('${p.id}')">Add to Cart - $${p.price.toFixed(2)}</button>`;
         appendMessage(reply, false, true);
       } else {
-        appendMessage("I'm sensing a unique energy, but I'm not sure which crystal fits best. Maybe try searching for attributes like <b>'courage'</b>, <b>'wealth'</b>, or <b>'healing'</b>.");
+        appendMessage("I'm sensing a unique energy, but I'm not sure which crystal fits best. Maybe try searching for attributes like <b>'courage'</b>, <b>'wealth'</b>, or <b>'healing'</b>.", false, true);
       }
     }, 800);
   }
