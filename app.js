@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
       products = data;
       renderProducts();
       updateCartUI();
+      injectSchema(data); // Phase 7
     })
     .catch(err => {
       console.error('Failed to load products:', err);
@@ -29,7 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     products.forEach(product => {
       const card = document.createElement('div');
-      card.className = 'product-card bg-white flex flex-col hover-trigger rounded-sm overflow-hidden';
+      card.className = 'product-card bg-white/70 backdrop-blur-sm border border-white/60 flex flex-col hover-trigger rounded-lg overflow-hidden shadow-sm transition-all duration-300';
+      card.dataset.name = product.name;
+      card.dataset.tags = product.tags.join(',');
       
       const tagsHtml = product.tags.slice(0, 3).map(tag => `<span class="text-[10px] uppercase tracking-wider px-2 py-1 bg-brand-cream/80 text-brand-dark/70 rounded-sm">${tag}</span>`).join('');
       
@@ -213,13 +216,56 @@ document.addEventListener('DOMContentLoaded', () => {
   closeCart.addEventListener('click', closeCartPanel);
   cartOverlay.addEventListener('click', closeCartPanel);
 
-  // Phase 4: Marketing Popup Logic
-  setTimeout(() => {
-    if (!localStorage.getItem('gemessence_subscribed')) {
+  // Phase 7: JSON-LD Product Schema
+  function injectSchema(data) {
+    const schema = {
+      "@context": "https://schema.org/",
+      "@type": "ItemList",
+      "itemListElement": data.map((p, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "Product",
+          "name": p.name,
+          "description": p.description,
+          "image": p.imageUrlHD || p.imageUrl,
+          "offers": { "@type": "Offer", "priceCurrency": "USD", "price": p.price, "availability": "https://schema.org/InStock" }
+        }
+      }))
+    };
+    const s = document.createElement('script');
+    s.type = 'application/ld+json';
+    s.text = JSON.stringify(schema);
+    document.head.appendChild(s);
+  }
+
+  // Phase 8: Smart Product Search
+  const searchInput = document.getElementById('product-search');
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase();
+      document.querySelectorAll('.product-card').forEach(card => {
+        const name = card.dataset.name.toLowerCase();
+        const tags = card.dataset.tags.toLowerCase();
+        if (name.includes(term) || tags.includes(term)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  }
+
+  // Phase 8: Exit-Intent Marketing Logic (Replaced Timer)
+  let popupTriggered = false;
+  document.addEventListener('mouseleave', (e) => {
+    // Trigger if mouse leaves window at the top (exit intent)
+    if (e.clientY < 20 && !popupTriggered && !localStorage.getItem('gemessence_subscribed')) {
+      popupTriggered = true;
       document.getElementById('marketing-popup').classList.remove('hidden');
       setTimeout(() => document.getElementById('marketing-popup').classList.remove('opacity-0'), 50);
     }
-  }, 3000);
+  });
 
   document.getElementById('close-popup').addEventListener('click', () => {
     document.getElementById('marketing-popup').classList.add('opacity-0');

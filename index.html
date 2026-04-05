@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemessence - Authentic Gemstone Bracelets</title>
+  
   <!-- Google Analytics 4 (GA4) Placeholder -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
@@ -9,9 +13,16 @@
     gtag('js', new Date());
     gtag('config', 'G-XXXXXXXXXX');
   </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gemessence | Premium Authentic Gemstone Bracelets & Healing Crystals</title>
+
+  <!-- Microsoft Clarity Heatmaps (Phase 8) -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "CLARITY_PROJECT_ID");
+  </script>
+
   <meta name="description" content="Discover our exclusive collection of authentic gemstone bracelets. Enhance your aura with amethyst, calm, healing, spiritual, sleep, protection, purple, meditation, third-eye, birthstone, carnelian, energy, chakra, vitality, motivation. Shop premium quality healing crystals today.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
@@ -21,9 +32,9 @@
         extend: {
           colors: {
             brand: {
-              cream: '#f2efe3',
+              cream: '#f8f6f5',
               dark: '#242424',
-              accent: '#304254'
+              accent: '#D4AF37'
             }
           },
           fontFamily: {
@@ -61,6 +72,12 @@
     <div class="text-center mb-16">
       <h3 class="text-3xl md:text-4xl font-serif uppercase tracking-widest text-brand-dark">Much More to Explore</h3>
       <p class="mt-4 text-brand-dark/70 uppercase tracking-widest text-sm">Discover our genuine gemstone collection</p>
+      
+      <!-- Phase 8: Smart Product Search -->
+      <div class="mt-10 max-w-md mx-auto relative group">
+        <input type="text" id="product-search" placeholder="Search by energy, crystal, or mood..." class="w-full pl-12 pr-6 py-4 rounded-full border border-brand-accent/20 bg-white/60 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-brand-accent/50 shadow-sm hover:shadow-md transition-all text-sm text-brand-dark font-medium placeholder-brand-dark/40">
+        <svg class="absolute left-5 top-4 text-brand-accent" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </div>
     </div>
     
     <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
@@ -82,9 +99,9 @@
     </div>
   </section>
 
-  <!-- Cart Sidebar (Phase 3) -->
-  <div id="cart-sidebar" class="fixed inset-y-0 right-0 w-full md:w-[400px] bg-[#f9f8f4] shadow-2xl transform translate-x-full transition-transform duration-500 ease-in-out z-50 flex flex-col border-l border-brand-dark/10">
-    <div class="p-6 border-b border-brand-dark/10 flex justify-between items-center bg-[#f9f8f4]">
+  <!-- Cart Sidebar (Phase 3 + 7 Aesthetic Upgrade) -->
+  <div id="cart-sidebar" class="fixed inset-y-0 right-0 w-full md:w-[400px] bg-brand-cream/80 backdrop-blur-xl shadow-[0_0_40px_rgba(0,0,0,0.1)] transform translate-x-full transition-transform duration-500 ease-in-out z-50 flex flex-col border-l border-white/40">
+    <div class="p-6 border-b border-brand-dark/10 flex justify-between items-center bg-transparent">
       <h2 class="text-2xl font-serif uppercase tracking-wider text-brand-dark">Your Cart</h2>
       <button id="close-cart" class="p-2 hover:bg-brand-dark/5 rounded-full transition-colors text-brand-dark focus:outline-none">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -95,7 +112,7 @@
       <!-- Injected by JS -->
     </div>
     
-    <div class="p-6 border-t border-brand-dark/10 bg-[#f9f8f4]">
+    <div class="p-6 border-t border-brand-dark/10 bg-transparent">
       <div class="flex justify-between items-center mb-6 text-xl">
         <span class="font-light tracking-wide text-brand-dark">Total</span>
         <span id="cart-total" class="font-bold font-serif">$0.00</span>
