@@ -407,6 +407,14 @@ document.addEventListener('DOMContentLoaded', () => {
       selectedZodiac = sign;
       document.querySelectorAll('.zodiac-btn').forEach(b => b.classList.remove('selected'));
       btn.classList.add('selected');
+      
+      // GA4 Connection: Track zodiac selection
+      if (typeof gtag === 'function') {
+        gtag('event', 'zodiac_select', {
+          'zodiac_sign': sign.name
+        });
+      }
+
       // Auto-advance after small delay
       setTimeout(() => {
         document.getElementById('quiz-step-1').classList.add('hidden');
@@ -424,6 +432,14 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.innerHTML = `<span class="text-2xl">${goal.emoji}</span><span class="text-sm font-medium">${goal.name}</span>`;
     btn.addEventListener('click', () => {
       selectedGoal = goal;
+      
+      // GA4 Connection: Track goal selection
+      if (typeof gtag === 'function') {
+        gtag('event', 'goal_select', {
+          'goal_name': goal.name
+        });
+      }
+
       // Start AI processing
       startAIProcessing();
     });
@@ -507,6 +523,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('quiz-loading').classList.add('hidden');
     document.getElementById('quiz-result').classList.remove('hidden');
+
+    // GA4 Connection: Track result matching
+    if (typeof gtag === 'function') {
+      gtag('event', 'quiz_result', {
+        'matched_product': quizResultProduct.name,
+        'zodiac_sign': selectedZodiac.name,
+        'goal': selectedGoal.name
+      });
+    }
   }
 
   // Add to cart from quiz result
@@ -540,6 +565,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('zodiac-quiz-modal');
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
+    
+    // GA4 Connection: Track quiz start
+    if (typeof gtag === 'function') {
+      gtag('event', 'quiz_start', {
+        'event_category': 'engagement',
+        'event_label': 'Zodiac Matchmaker'
+      });
+    }
   }
 
   function closeZodiacQuiz() {
