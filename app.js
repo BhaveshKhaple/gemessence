@@ -28,15 +28,21 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderProducts() {
     productGrid.innerHTML = '';
     
-    products.forEach(product => {
+    products.forEach((product, index) => {
       const card = document.createElement('div');
-      card.className = 'product-card bg-white/70 backdrop-blur-sm border border-white/60 flex flex-col hover-trigger rounded-lg overflow-hidden shadow-sm transition-all duration-300';
+      card.className = 'product-card bg-white/70 backdrop-blur-sm border border-white/60 flex flex-col hover-trigger rounded-lg overflow-hidden shadow-sm transition-all duration-300 relative';
       card.dataset.name = product.name;
       card.dataset.tags = product.tags.join(',');
       
       const tagsHtml = product.tags.slice(0, 3).map(tag => `<span class="text-[10px] uppercase tracking-wider px-2 py-1 bg-brand-cream/80 text-brand-dark/70 rounded-sm">${tag}</span>`).join('');
       
+      // STEP 3: Add urgency badge to first 3 products
+      const urgencyBadge = index < 3 
+        ? `<div class="urgency-badge">🔥 High Demand: Only ${Math.floor(Math.random() * 3) + 1} Left!</div>` 
+        : '';
+      
       card.innerHTML = `
+        ${urgencyBadge}
         <div class="aspect-square overflow-hidden bg-brand-cream relative group">
           <img src="${product.imageUrl}" alt="${product.name} - Handmade Gemstone Jewelry featuring ${product.tags.slice(0,5).join(', ')}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out" loading="lazy">
           <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -341,4 +347,258 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('close-popup').click();
     }, 2500);
   });
+
+
+  // ═══════════════════════════════════════════════════════════
+  // STEP 1: Zodiac Crystal Matchmaker Quiz Logic
+  // ═══════════════════════════════════════════════════════════
+
+  const zodiacSigns = [
+    { name: 'Aries', emoji: '♈', element: 'fire' },
+    { name: 'Taurus', emoji: '♉', element: 'earth' },
+    { name: 'Gemini', emoji: '♊', element: 'air' },
+    { name: 'Cancer', emoji: '♋', element: 'water' },
+    { name: 'Leo', emoji: '♌', element: 'fire' },
+    { name: 'Virgo', emoji: '♍', element: 'earth' },
+    { name: 'Libra', emoji: '♎', element: 'air' },
+    { name: 'Scorpio', emoji: '♏', element: 'water' },
+    { name: 'Sagittarius', emoji: '♐', element: 'fire' },
+    { name: 'Capricorn', emoji: '♑', element: 'earth' },
+    { name: 'Aquarius', emoji: '♒', element: 'air' },
+    { name: 'Pisces', emoji: '♓', element: 'water' }
+  ];
+
+  const goals = [
+    { name: 'Inner Peace & Calm', emoji: '🧘', tags: ['calm', 'peace', 'meditation', 'soothing', 'healing', 'balance'] },
+    { name: 'Love & Relationships', emoji: '💕', tags: ['love', 'compassion', 'emotional', 'heart-chakra', 'self-care', 'harmony'] },
+    { name: 'Energy & Motivation', emoji: '⚡', tags: ['energy', 'vitality', 'motivation', 'courage', 'strength', 'power'] },
+    { name: 'Protection & Grounding', emoji: '🛡️', tags: ['protection', 'grounding', 'shield', 'stability', 'focus', 'purification'] },
+    { name: 'Wealth & Abundance', emoji: '💰', tags: ['wealth', 'prosperity', 'success', 'abundance', 'manifestation', 'luck'] },
+    { name: 'Clarity & Intuition', emoji: '🔮', tags: ['intuition', 'clarity', 'wisdom', 'spiritual', 'third-eye', 'awareness'] }
+  ];
+
+  // Zodiac-to-tag priority mapping
+  const zodiacTagMap = {
+    'Aries':       ['courage', 'energy', 'motivation', 'vitality', 'strength'],
+    'Taurus':      ['grounding', 'stability', 'love', 'abundance', 'peace'],
+    'Gemini':      ['communication', 'clarity', 'balance', 'truth', 'flow'],
+    'Cancer':      ['emotional', 'healing', 'love', 'peace', 'calm'],
+    'Leo':         ['courage', 'confidence', 'vitality', 'power', 'energy'],
+    'Virgo':       ['focus', 'clarity', 'healing', 'purification', 'balance'],
+    'Libra':       ['harmony', 'balance', 'love', 'peace', 'beauty'],
+    'Scorpio':     ['transformation', 'protection', 'intuition', 'power', 'spiritual'],
+    'Sagittarius': ['wisdom', 'abundance', 'optimism', 'growth', 'adventure'],
+    'Capricorn':   ['grounding', 'strength', 'focus', 'protection', 'stability'],
+    'Aquarius':    ['intuition', 'clarity', 'truth', 'vision', 'awareness'],
+    'Pisces':      ['spiritual', 'intuition', 'healing', 'peace', 'meditation']
+  };
+
+  let selectedZodiac = null;
+  let selectedGoal = null;
+  let quizResultProduct = null;
+
+  // Populate zodiac grid
+  const zodiacGrid = document.getElementById('zodiac-grid');
+  zodiacSigns.forEach(sign => {
+    const btn = document.createElement('button');
+    btn.className = 'zodiac-btn';
+    btn.innerHTML = `<span class="text-2xl block mb-1">${sign.emoji}</span><span class="text-[10px] uppercase tracking-wider font-bold">${sign.name}</span>`;
+    btn.addEventListener('click', () => {
+      selectedZodiac = sign;
+      document.querySelectorAll('.zodiac-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      // Auto-advance after small delay
+      setTimeout(() => {
+        document.getElementById('quiz-step-1').classList.add('hidden');
+        document.getElementById('quiz-step-2').classList.remove('hidden');
+      }, 400);
+    });
+    zodiacGrid.appendChild(btn);
+  });
+
+  // Populate goal grid
+  const goalGrid = document.getElementById('goal-grid');
+  goals.forEach(goal => {
+    const btn = document.createElement('button');
+    btn.className = 'goal-btn';
+    btn.innerHTML = `<span class="text-2xl">${goal.emoji}</span><span class="text-sm font-medium">${goal.name}</span>`;
+    btn.addEventListener('click', () => {
+      selectedGoal = goal;
+      // Start AI processing
+      startAIProcessing();
+    });
+    goalGrid.appendChild(btn);
+  });
+
+  // Back button
+  document.getElementById('quiz-back').addEventListener('click', () => {
+    document.getElementById('quiz-step-2').classList.add('hidden');
+    document.getElementById('quiz-step-1').classList.remove('hidden');
+  });
+
+  function startAIProcessing() {
+    document.getElementById('quiz-step-2').classList.add('hidden');
+    document.getElementById('quiz-loading').classList.remove('hidden');
+    
+    const progressBar = document.getElementById('ai-progress-bar');
+    const statusText = document.getElementById('ai-status-text');
+    
+    const stages = [
+      { pct: 15, text: 'Analyzing zodiac profile...' },
+      { pct: 35, text: 'Cross-referencing crystal database...' },
+      { pct: 55, text: 'Running GPT-4 compatibility engine...' },
+      { pct: 75, text: 'Evaluating chakra alignment...' },
+      { pct: 90, text: 'Generating personalized match...' },
+      { pct: 100, text: 'Match found! ✨' }
+    ];
+
+    let stageIndex = 0;
+    const interval = setInterval(() => {
+      if (stageIndex < stages.length) {
+        progressBar.style.width = stages[stageIndex].pct + '%';
+        statusText.textContent = stages[stageIndex].text;
+        stageIndex++;
+      } else {
+        clearInterval(interval);
+        setTimeout(() => showQuizResult(), 300);
+      }
+    }, 333);
+  }
+
+  function showQuizResult() {
+    // Score products based on zodiac + goal tag overlap
+    const zodiacTags = zodiacTagMap[selectedZodiac.name] || [];
+    const goalTags = selectedGoal.tags || [];
+    const combinedTags = [...new Set([...zodiacTags, ...goalTags])];
+
+    let bestMatch = null;
+    let bestScore = -1;
+
+    products.forEach(product => {
+      let score = 0;
+      combinedTags.forEach(tag => {
+        if (product.tags.includes(tag)) score++;
+      });
+      // Add slight randomness to make it feel dynamic
+      score += Math.random() * 0.5;
+      if (score > bestScore) {
+        bestScore = score;
+        bestMatch = product;
+      }
+    });
+
+    quizResultProduct = bestMatch || products[0];
+
+    // Populate result UI
+    document.getElementById('result-product-name').textContent = quizResultProduct.name;
+    document.getElementById('result-product-img').src = quizResultProduct.imageUrl;
+    document.getElementById('result-product-img').alt = quizResultProduct.name;
+    document.getElementById('result-product-desc').textContent = quizResultProduct.description;
+    document.getElementById('result-product-price').textContent = `$${quizResultProduct.price.toFixed(2)}`;
+
+    const tagsContainer = document.getElementById('result-product-tags');
+    tagsContainer.innerHTML = '';
+    quizResultProduct.tags.slice(0, 5).forEach(tag => {
+      const span = document.createElement('span');
+      span.className = 'text-[10px] uppercase tracking-wider px-3 py-1 bg-white/10 text-white/70 rounded-full border border-white/10';
+      span.textContent = tag;
+      tagsContainer.appendChild(span);
+    });
+
+    document.getElementById('quiz-loading').classList.add('hidden');
+    document.getElementById('quiz-result').classList.remove('hidden');
+  }
+
+  // Add to cart from quiz result
+  document.getElementById('result-add-to-cart').addEventListener('click', () => {
+    if (quizResultProduct) {
+      addToCart(quizResultProduct.id);
+      closeZodiacQuiz();
+    }
+  });
+
+  // Retry quiz
+  document.getElementById('quiz-retry').addEventListener('click', () => {
+    resetQuiz();
+  });
+
+  function resetQuiz() {
+    selectedZodiac = null;
+    selectedGoal = null;
+    quizResultProduct = null;
+    document.querySelectorAll('.zodiac-btn').forEach(b => b.classList.remove('selected'));
+    document.getElementById('quiz-result').classList.add('hidden');
+    document.getElementById('quiz-loading').classList.add('hidden');
+    document.getElementById('quiz-step-2').classList.add('hidden');
+    document.getElementById('quiz-step-1').classList.remove('hidden');
+    document.getElementById('ai-progress-bar').style.width = '0%';
+  }
+
+  // Open / Close quiz modal
+  function openZodiacQuiz() {
+    resetQuiz();
+    const modal = document.getElementById('zodiac-quiz-modal');
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeZodiacQuiz() {
+    const modal = document.getElementById('zodiac-quiz-modal');
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('open-zodiac-quiz').addEventListener('click', openZodiacQuiz);
+  document.getElementById('close-zodiac-quiz').addEventListener('click', closeZodiacQuiz);
+  document.getElementById('zodiac-quiz-backdrop').addEventListener('click', closeZodiacQuiz);
+
+
+  // ═══════════════════════════════════════════════════════════
+  // STEP 2: Teacher Mode Analytics Dashboard (Escape Key)
+  // ═══════════════════════════════════════════════════════════
+
+  let dashboardOpen = false;
+  const analyticsDashboard = document.getElementById('analytics-dashboard');
+
+  function toggleDashboard() {
+    dashboardOpen = !dashboardOpen;
+    if (dashboardOpen) {
+      analyticsDashboard.classList.remove('-translate-x-full');
+      document.body.classList.add('dashboard-open');
+    } else {
+      analyticsDashboard.classList.add('-translate-x-full');
+      document.body.classList.remove('dashboard-open');
+    }
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      // If zodiac quiz is open, close it instead
+      const quizModal = document.getElementById('zodiac-quiz-modal');
+      if (!quizModal.classList.contains('hidden')) {
+        closeZodiacQuiz();
+        return;
+      }
+      toggleDashboard();
+    }
+  });
+
+  document.getElementById('close-analytics').addEventListener('click', () => {
+    dashboardOpen = true; // will be toggled to false
+    toggleDashboard();
+  });
+
+
+  // ═══════════════════════════════════════════════════════════
+  // STEP 3: Mobile Menu Toggle
+  // ═══════════════════════════════════════════════════════════
+
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+
+  if (mobileMenuToggle && mobileNav) {
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileNav.classList.toggle('hidden');
+    });
+  }
 });

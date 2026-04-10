@@ -93,3 +93,184 @@ a {
 .hero-gradient {
   background: linear-gradient(180deg, #f8f6f5 0%, #ede8dc 50%, #e2dcd0 100%);
 }
+
+/* ═══════════════════════════════════════════════════════════ */
+/* STEP 1: Zodiac Quiz Modal Styles                           */
+/* ═══════════════════════════════════════════════════════════ */
+
+/* Glassmorphic card */
+.zodiac-glass-card {
+  background: linear-gradient(135deg, rgba(36, 36, 36, 0.85) 0%, rgba(20, 20, 30, 0.92) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 24px;
+  box-shadow: 
+    0 40px 80px rgba(0, 0, 0, 0.4),
+    0 0 60px rgba(212, 175, 55, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Zodiac sign button */
+.zodiac-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 10px 6px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.zodiac-btn:hover {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.15);
+}
+
+.zodiac-btn.selected {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.1));
+  border-color: #D4AF37;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+/* Goal button */
+.goal-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-align: left;
+  color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.goal-btn:hover {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.15);
+}
+
+/* Quiz step transition */
+.quiz-step {
+  animation: quizFadeIn 0.4s ease-out;
+}
+
+@keyframes quizFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Zodiac CTA shimmer effect */
+.zodiac-cta-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
+}
+
+/* ═══════════════════════════════════════════════════════════ */
+/* STEP 2: Analytics Dashboard Styles                         */
+/* ═══════════════════════════════════════════════════════════ */
+
+#analytics-dashboard::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+#analytics-dashboard::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #D4AF37, #1a1a2e);
+}
+
+/* Funnel row animation on dashboard open */
+.funnel-row {
+  animation: funnelSlideIn 0.6s ease-out backwards;
+}
+
+.funnel-row:nth-child(1) { animation-delay: 0.1s; }
+.funnel-row:nth-child(2) { animation-delay: 0.2s; }
+.funnel-row:nth-child(3) { animation-delay: 0.3s; }
+.funnel-row:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes funnelSlideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ═══════════════════════════════════════════════════════════ */
+/* STEP 3: Urgency Badge & CTR Styles                         */
+/* ═══════════════════════════════════════════════════════════ */
+
+.urgency-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 6px 12px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+  animation: urgencyPulse 2s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+@keyframes urgencyPulse {
+  0%, 100% { box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4); }
+  50% { box-shadow: 0 4px 20px rgba(239, 68, 68, 0.7); }
+}
+
+/* Nav link hover underline */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #D4AF37;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Mobile menu animation */
+#mobile-nav {
+  transition: max-height 0.3s ease-out;
+}
+
+/* AdSense placement shimmer */
+#adsense-placement {
+  transition: all 0.3s ease;
+}
+
+#adsense-placement:hover {
+  border-color: rgba(212, 175, 55, 0.6);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+}
+
+/* Analytics dashboard body lock */
+.dashboard-open {
+  overflow: hidden;
+}

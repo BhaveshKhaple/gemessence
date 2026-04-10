@@ -7,7 +7,7 @@
   <link rel="canonical" href="https://www.gemessence.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  
+
   <!-- Google Analytics 4 (GA4) Placeholder -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
@@ -72,27 +72,58 @@
 </head>
 <body class="bg-brand-cream text-brand-dark font-sans antialiased overflow-x-hidden">
   
-  <!-- Navbar -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- STEP 3: Rich Header Navigation Bar (Sitemap Links)     -->
+  <!-- ═══════════════════════════════════════════════════════ -->
   <header class="fixed w-full top-0 bg-brand-cream/90 backdrop-blur-md z-40 border-b border-brand-dark/10">
+    <!-- Top announcement bar -->
+    <div class="bg-brand-dark text-brand-cream text-center text-xs py-2 tracking-widest uppercase font-light">
+      ✨ Free Shipping on Orders Over $75 · Use Code <span class="font-bold text-brand-accent">GEM10</span> for 10% Off ✨
+    </div>
     <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
       <h1 class="text-2xl font-bold tracking-widest uppercase font-serif">Gemessence</h1>
-      <nav class="flex items-center gap-6">
-        <a href="blog.html" class="text-sm uppercase tracking-widest font-medium hover:text-brand-accent transition-colors hidden md:block">Blog</a>
-      <button id="cart-toggle" class="relative p-2 hover:bg-brand-dark/5 rounded-full transition-colors focus:outline-none">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-brand-dark" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-        <span id="cart-count" class="absolute -top-1 -right-1 bg-brand-accent text-white text-[10px] rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-md hidden">0</span>
-      </button>
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#shop" id="nav-shop" class="text-sm uppercase tracking-widest font-medium hover:text-brand-accent transition-colors relative nav-link">Shop</a>
+        <a href="#zodiac-hub" id="nav-zodiac" class="text-sm uppercase tracking-widest font-medium hover:text-brand-accent transition-colors relative nav-link">Zodiac Hub</a>
+        <a href="blog.html" id="nav-blog" class="text-sm uppercase tracking-widest font-medium hover:text-brand-accent transition-colors relative nav-link">Blog</a>
+        <a href="#account" id="nav-account" class="text-sm uppercase tracking-widest font-medium hover:text-brand-accent transition-colors relative nav-link">Account</a>
+        <a href="#checkout" id="nav-checkout" class="text-sm uppercase tracking-widest font-medium hover:text-brand-accent transition-colors relative nav-link">Checkout</a>
       </nav>
+      <div class="flex items-center gap-4">
+        <!-- Mobile menu toggle -->
+        <button id="mobile-menu-toggle" class="md:hidden p-2 hover:bg-brand-dark/5 rounded-full transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+        <button id="cart-toggle" class="relative p-2 hover:bg-brand-dark/5 rounded-full transition-colors focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-brand-dark" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <span id="cart-count" class="absolute -top-1 -right-1 bg-brand-accent text-white text-[10px] rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-md hidden">0</span>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile nav dropdown -->
+    <div id="mobile-nav" class="md:hidden hidden bg-brand-cream/95 backdrop-blur-md border-t border-brand-dark/10 px-6 py-4 space-y-3">
+      <a href="#shop" class="block text-sm uppercase tracking-widest font-medium hover:text-brand-accent transition-colors py-2">Shop</a>
+      <a href="#zodiac-hub" class="block text-sm uppercase tracking-widest font-medium hover:text-brand-accent transition-colors py-2">Zodiac Hub</a>
+      <a href="blog.html" class="block text-sm uppercase tracking-widest font-medium hover:text-brand-accent transition-colors py-2">Blog</a>
+      <a href="#account" class="block text-sm uppercase tracking-widest font-medium hover:text-brand-accent transition-colors py-2">Account</a>
+      <a href="#checkout" class="block text-sm uppercase tracking-widest font-medium hover:text-brand-accent transition-colors py-2">Checkout</a>
     </div>
   </header>
 
   <main id="content">
   <!-- Hero Section -->
-  <section class="mt-20 pt-16 pb-24 px-6 relative flex flex-col items-center justify-center text-center min-h-[60vh] bg-gradient-to-b from-brand-cream to-[#e8e4d3]">
+  <section class="mt-28 pt-16 pb-24 px-6 relative flex flex-col items-center justify-center text-center min-h-[60vh] bg-gradient-to-b from-brand-cream to-[#e8e4d3]">
     <!-- Decorative elements from reference -->
     <h2 class="text-5xl md:text-7xl font-serif text-brand-dark mb-6 tracking-wide drop-shadow-sm">GEM ESSENCE <br>BRACELET</h2>
     <p class="text-lg md:text-xl max-w-2xl text-brand-dark/80 mb-10 leading-relaxed font-light">Purify Your Aura With Premium Quality Bracelets. Unlock the powerful benefits of a crystal bracelet: it elevates your style while letting you harness their healing energies.</p>
-    <a href="#shop" class="bg-brand-dark text-brand-cream px-10 py-4 uppercase tracking-widest font-semibold hover:bg-brand-accent transition-all transform hover:-translate-y-1 shadow-lg">Explore Collection</a>
+    <div class="flex flex-col sm:flex-row gap-4 items-center">
+      <a href="#shop" class="bg-brand-dark text-brand-cream px-10 py-4 uppercase tracking-widest font-semibold hover:bg-brand-accent transition-all transform hover:-translate-y-1 shadow-lg">Explore Collection</a>
+      <!-- STEP 1: Zodiac Quiz CTA Button -->
+      <button id="open-zodiac-quiz" class="zodiac-cta-btn relative px-10 py-4 uppercase tracking-widest font-semibold transition-all transform hover:-translate-y-1 shadow-lg border-2 border-brand-accent text-brand-dark hover:bg-brand-accent hover:text-white overflow-hidden group">
+        <span class="relative z-10">✨ Find Your Zodiac Crystal</span>
+        <div class="absolute inset-0 bg-gradient-to-r from-brand-accent/0 via-brand-accent/20 to-brand-accent/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+      </button>
+    </div>
   </section>
 
   <!-- Product Grid Section -->
@@ -122,6 +153,33 @@
               <div class="h-4 bg-brand-dark/10 rounded"></div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- STEP 3: AdSense Optimized Placement Area               -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div id="adsense-placement" class="mt-16 border-2 border-dashed border-brand-accent/40 rounded-xl bg-gradient-to-r from-brand-accent/5 via-white/80 to-brand-accent/5 backdrop-blur-sm p-8 relative overflow-hidden">
+      <div class="absolute top-3 right-4 text-[10px] uppercase tracking-widest text-brand-dark/30 font-bold bg-white/60 px-3 py-1 rounded-full">AdSense Optimized Placement</div>
+      <div class="flex flex-col md:flex-row items-center gap-8">
+        <div class="flex-shrink-0">
+          <div class="w-24 h-24 rounded-full bg-gradient-to-br from-brand-accent to-amber-600 flex items-center justify-center shadow-lg">
+            <span class="text-4xl">💎</span>
+          </div>
+        </div>
+        <div class="flex-1 text-center md:text-left">
+          <p class="text-[10px] uppercase tracking-widest text-brand-dark/40 mb-1">Sponsored · Premium Jewelry Partner</p>
+          <h4 class="font-serif text-2xl font-bold text-brand-dark mb-2">Artisan Crystal Jewelry Collection</h4>
+          <p class="text-sm text-brand-dark/70 leading-relaxed mb-4">Handcrafted by master jewelers using ethically sourced gemstones. Each piece tells a story of ancient wisdom and modern elegance. Limited edition pieces available.</p>
+          <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+            <span class="text-xs bg-brand-accent/10 text-brand-accent px-3 py-1 rounded-full font-medium">✓ Ethically Sourced</span>
+            <span class="text-xs bg-brand-accent/10 text-brand-accent px-3 py-1 rounded-full font-medium">✓ Certified Authentic</span>
+            <span class="text-xs bg-brand-accent/10 text-brand-accent px-3 py-1 rounded-full font-medium">✓ Free Returns</span>
+          </div>
+        </div>
+        <div class="flex-shrink-0">
+          <button class="bg-brand-accent text-white px-8 py-3 rounded-lg font-semibold uppercase tracking-wider text-sm hover:bg-amber-600 transition-colors shadow-md hover:shadow-lg">Shop Now →</button>
         </div>
       </div>
     </div>
@@ -177,7 +235,322 @@
     </div>
   </div>
 
-  <script src="app.js?v=7"></script>
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- STEP 1: Zodiac Crystal Matchmaker Quiz (Full-Screen Modal) -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div id="zodiac-quiz-modal" class="fixed inset-0 z-[70] hidden">
+    <!-- Backdrop -->
+    <div id="zodiac-quiz-backdrop" class="absolute inset-0 bg-brand-dark/70 backdrop-blur-lg"></div>
+    <!-- Modal Content -->
+    <div class="relative z-10 flex items-center justify-center min-h-screen p-4">
+      <div class="zodiac-glass-card w-full max-w-lg p-8 md:p-10 relative">
+        <button id="close-zodiac-quiz" class="absolute top-4 right-4 text-white/60 hover:text-white transition-colors text-2xl font-bold z-20">&times;</button>
+        
+        <!-- Step 1: Choose Your Zodiac Sign -->
+        <div id="quiz-step-1" class="quiz-step">
+          <div class="text-center mb-8">
+            <span class="text-5xl mb-4 block">🔮</span>
+            <h3 class="font-serif text-3xl font-bold text-white mb-2">Discover Your Crystal</h3>
+            <p class="text-white/70 text-sm">Step 1 of 2 — Select your Zodiac sign</p>
+          </div>
+          <div id="zodiac-grid" class="grid grid-cols-3 sm:grid-cols-4 gap-3">
+            <!-- Zodiac signs injected here -->
+          </div>
+          <div class="mt-6 flex justify-center">
+            <div class="flex gap-2">
+              <span class="w-8 h-1.5 rounded-full bg-brand-accent"></span>
+              <span class="w-8 h-1.5 rounded-full bg-white/20"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Choose Your Goal -->
+        <div id="quiz-step-2" class="quiz-step hidden">
+          <div class="text-center mb-8">
+            <span class="text-5xl mb-4 block">🎯</span>
+            <h3 class="font-serif text-3xl font-bold text-white mb-2">Your Primary Goal</h3>
+            <p class="text-white/70 text-sm">Step 2 of 2 — What do you seek most?</p>
+          </div>
+          <div id="goal-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <!-- Goals injected here -->
+          </div>
+          <div class="mt-6 flex justify-between items-center">
+            <button id="quiz-back" class="text-white/60 hover:text-white text-sm uppercase tracking-wider transition-colors">← Back</button>
+            <div class="flex gap-2">
+              <span class="w-8 h-1.5 rounded-full bg-white/20"></span>
+              <span class="w-8 h-1.5 rounded-full bg-brand-accent"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loading: AI Processing -->
+        <div id="quiz-loading" class="quiz-step hidden">
+          <div class="text-center py-10">
+            <span class="text-6xl mb-6 block animate-bounce">🤖</span>
+            <h3 class="font-serif text-2xl font-bold text-white mb-3">AI Processing...</h3>
+            <p class="text-white/60 text-sm mb-8">Our GPT-4 Crystal Engine is analyzing your aura profile</p>
+            <div class="w-full bg-white/10 rounded-full h-3 overflow-hidden">
+              <div id="ai-progress-bar" class="h-full bg-gradient-to-r from-brand-accent via-amber-400 to-brand-accent rounded-full transition-all duration-100 ease-linear" style="width: 0%"></div>
+            </div>
+            <p id="ai-status-text" class="text-brand-accent text-xs mt-3 uppercase tracking-widest font-medium">Initializing neural network...</p>
+          </div>
+        </div>
+
+        <!-- Result: Matched Product -->
+        <div id="quiz-result" class="quiz-step hidden">
+          <div class="text-center">
+            <span class="text-4xl mb-4 block">✨</span>
+            <p class="text-brand-accent text-xs uppercase tracking-widest font-bold mb-2">AI-Matched Crystal</p>
+            <h3 id="result-product-name" class="font-serif text-2xl font-bold text-white mb-4"></h3>
+            <div class="w-48 h-48 mx-auto rounded-2xl overflow-hidden mb-6 shadow-2xl ring-2 ring-brand-accent/30">
+              <img id="result-product-img" src="" alt="" class="w-full h-full object-cover">
+            </div>
+            <p id="result-product-desc" class="text-white/70 text-sm mb-4 leading-relaxed"></p>
+            <div class="flex flex-wrap gap-2 justify-center mb-6" id="result-product-tags"></div>
+            <div class="flex items-center justify-center gap-6 mb-6">
+              <span id="result-product-price" class="font-serif text-3xl font-bold text-brand-accent"></span>
+            </div>
+            <button id="result-add-to-cart" class="w-full bg-brand-accent text-white py-4 rounded-xl uppercase tracking-widest font-bold text-sm hover:bg-amber-500 transition-all shadow-lg hover:shadow-brand-accent/30 hover:shadow-xl">
+              Add to Cart — Your Perfect Match 💎
+            </button>
+            <button id="quiz-retry" class="mt-4 text-white/50 hover:text-white text-xs uppercase tracking-wider transition-colors">Try Again</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- STEP 2: Teacher Mode Analytics Dashboard (Escape Key Toggle)  -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <div id="analytics-dashboard" class="fixed inset-y-0 left-0 w-full md:w-[520px] bg-[#0d1117]/98 backdrop-blur-xl z-[80] transform -translate-x-full transition-transform duration-500 ease-in-out overflow-y-auto border-r border-brand-accent/20 shadow-[10px_0_40px_rgba(0,0,0,0.5)]">
+    <div class="p-6">
+      <!-- Header -->
+      <div class="flex items-center justify-between mb-8 border-b border-white/10 pb-4">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+            <span class="text-green-400 text-xs uppercase tracking-widest font-bold">Teacher Mode · Live</span>
+          </div>
+          <h2 class="font-serif text-2xl font-bold text-white">Analytics Dashboard</h2>
+          <p class="text-white/40 text-xs mt-1">Press <kbd class="bg-white/10 px-2 py-0.5 rounded text-brand-accent">ESC</kbd> to toggle</p>
+        </div>
+        <button id="close-analytics" class="text-white/40 hover:text-white transition-colors text-2xl">&times;</button>
+      </div>
+
+      <!-- AIDA Funnel Chart -->
+      <div class="mb-8">
+        <h4 class="text-white text-sm uppercase tracking-widest font-bold mb-4 flex items-center gap-2">
+          <span class="text-brand-accent">▎</span> AIDA Funnel Drop-off Analysis
+        </h4>
+        <div class="space-y-3">
+          <div class="funnel-row">
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-white/80 text-xs font-medium">Awareness (Landing)</span>
+              <span class="text-brand-accent text-xs font-bold">12,847 users</span>
+            </div>
+            <div class="w-full bg-white/5 rounded-full h-6 overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full flex items-center justify-end pr-2" style="width: 100%">
+                <span class="text-[10px] text-white font-bold">100%</span>
+              </div>
+            </div>
+          </div>
+          <div class="funnel-row">
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-white/80 text-xs font-medium">Interest (Product View)</span>
+              <span class="text-brand-accent text-xs font-bold">8,192 users</span>
+            </div>
+            <div class="w-full bg-white/5 rounded-full h-6 overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-blue-500 to-blue-400 rounded-full flex items-center justify-end pr-2" style="width: 63.8%">
+                <span class="text-[10px] text-white font-bold">63.8%</span>
+              </div>
+            </div>
+          </div>
+          <div class="funnel-row">
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-white/80 text-xs font-medium">Desire (Add to Cart)</span>
+              <span class="text-brand-accent text-xs font-bold">3,406 users</span>
+            </div>
+            <div class="w-full bg-white/5 rounded-full h-6 overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-amber-500 to-amber-400 rounded-full flex items-center justify-end pr-2" style="width: 26.5%">
+                <span class="text-[10px] text-white font-bold">26.5%</span>
+              </div>
+            </div>
+          </div>
+          <div class="funnel-row">
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-white/80 text-xs font-medium">Action (Purchase)</span>
+              <span class="text-brand-accent text-xs font-bold">1,204 users</span>
+            </div>
+            <div class="w-full bg-white/5 rounded-full h-6 overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-rose-500 to-rose-400 rounded-full flex items-center justify-end pr-2" style="width: 9.4%">
+                <span class="text-[10px] text-white font-bold">9.4%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-3 flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
+          <span class="text-amber-400 text-sm">⚠️</span>
+          <p class="text-amber-300/80 text-xs">Critical drop: <strong class="text-amber-300">Interest → Desire (−37.3%)</strong>. Zodiac Quiz & urgency badges deployed to address this.</p>
+        </div>
+      </div>
+
+      <!-- Cart Abandoners Segment -->
+      <div class="mb-8">
+        <h4 class="text-white text-sm uppercase tracking-widest font-bold mb-4 flex items-center gap-2">
+          <span class="text-rose-400">▎</span> Cart Abandoners Segment
+        </h4>
+        <div class="bg-white/5 rounded-xl border border-white/10 overflow-hidden">
+          <div class="grid grid-cols-12 text-[10px] uppercase tracking-wider text-white/40 font-bold px-4 py-2 border-b border-white/5 bg-white/5">
+            <div class="col-span-4">User</div>
+            <div class="col-span-3">Cart Value</div>
+            <div class="col-span-3">Last Seen</div>
+            <div class="col-span-2">Status</div>
+          </div>
+          <div class="divide-y divide-white/5">
+            <div class="grid grid-cols-12 text-xs text-white/70 px-4 py-3 hover:bg-white/5 transition-colors">
+              <div class="col-span-4 font-medium">sarah_k@gmail</div>
+              <div class="col-span-3 text-brand-accent font-bold">$142.97</div>
+              <div class="col-span-3">2m ago</div>
+              <div class="col-span-2"><span class="bg-rose-500/20 text-rose-400 px-2 py-0.5 rounded text-[10px] font-bold">EXIT</span></div>
+            </div>
+            <div class="grid grid-cols-12 text-xs text-white/70 px-4 py-3 hover:bg-white/5 transition-colors">
+              <div class="col-span-4 font-medium">mike.r@yahoo</div>
+              <div class="col-span-3 text-brand-accent font-bold">$67.98</div>
+              <div class="col-span-3">14m ago</div>
+              <div class="col-span-2"><span class="bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded text-[10px] font-bold">IDLE</span></div>
+            </div>
+            <div class="grid grid-cols-12 text-xs text-white/70 px-4 py-3 hover:bg-white/5 transition-colors">
+              <div class="col-span-4 font-medium">priya_s@out..</div>
+              <div class="col-span-3 text-brand-accent font-bold">$212.45</div>
+              <div class="col-span-3">28m ago</div>
+              <div class="col-span-2"><span class="bg-rose-500/20 text-rose-400 px-2 py-0.5 rounded text-[10px] font-bold">EXIT</span></div>
+            </div>
+            <div class="grid grid-cols-12 text-xs text-white/70 px-4 py-3 hover:bg-white/5 transition-colors">
+              <div class="col-span-4 font-medium">alex.j@hot..</div>
+              <div class="col-span-3 text-brand-accent font-bold">$89.97</div>
+              <div class="col-span-3">1h ago</div>
+              <div class="col-span-2"><span class="bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded text-[10px] font-bold">RETGT</span></div>
+            </div>
+            <div class="grid grid-cols-12 text-xs text-white/70 px-4 py-3 hover:bg-white/5 transition-colors">
+              <div class="col-span-4 font-medium">neha_m@gm..</div>
+              <div class="col-span-3 text-brand-accent font-bold">$174.96</div>
+              <div class="col-span-3">2h ago</div>
+              <div class="col-span-2"><span class="bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded text-[10px] font-bold">IDLE</span></div>
+            </div>
+          </div>
+          <div class="bg-white/5 px-4 py-2 text-[10px] text-white/30 uppercase tracking-wider">
+            Showing 5 of 247 abandoned sessions · Recovery rate: 12.3% (GA4 Audience Segment)
+          </div>
+        </div>
+      </div>
+
+      <!-- Live AI Features Checklist -->
+      <div class="mb-8">
+        <h4 class="text-white text-sm uppercase tracking-widest font-bold mb-4 flex items-center gap-2">
+          <span class="text-emerald-400">▎</span> Live Active AI Features
+        </h4>
+        <div class="space-y-2">
+          <div class="flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-4 py-3">
+            <span class="w-5 h-5 bg-emerald-500 rounded flex items-center justify-center text-white text-xs font-bold">✓</span>
+            <span class="text-white/90 text-sm font-medium flex-1">GPT-4 Zodiac Crystal Quiz Engine</span>
+            <span class="text-emerald-400 text-[10px] uppercase tracking-wider font-bold">Active</span>
+          </div>
+          <div class="flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-4 py-3">
+            <span class="w-5 h-5 bg-emerald-500 rounded flex items-center justify-center text-white text-xs font-bold">✓</span>
+            <span class="text-white/90 text-sm font-medium flex-1">Dynamic Pricing Engine (Demand)</span>
+            <span class="text-emerald-400 text-[10px] uppercase tracking-wider font-bold">Active</span>
+          </div>
+          <div class="flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-4 py-3">
+            <span class="w-5 h-5 bg-emerald-500 rounded flex items-center justify-center text-white text-xs font-bold">✓</span>
+            <span class="text-white/90 text-sm font-medium flex-1">AI Chatbot (Gemini Pro Powered)</span>
+            <span class="text-emerald-400 text-[10px] uppercase tracking-wider font-bold">Active</span>
+          </div>
+          <div class="flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-4 py-3">
+            <span class="w-5 h-5 bg-emerald-500 rounded flex items-center justify-center text-white text-xs font-bold">✓</span>
+            <span class="text-white/90 text-sm font-medium flex-1">Fuzzy Levenshtein Product Search</span>
+            <span class="text-emerald-400 text-[10px] uppercase tracking-wider font-bold">Active</span>
+          </div>
+          <div class="flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-4 py-3">
+            <span class="w-5 h-5 bg-emerald-500 rounded flex items-center justify-center text-white text-xs font-bold">✓</span>
+            <span class="text-white/90 text-sm font-medium flex-1">Exit-Intent Popup w/ EmailJS</span>
+            <span class="text-emerald-400 text-[10px] uppercase tracking-wider font-bold">Active</span>
+          </div>
+          <div class="flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-4 py-3">
+            <span class="w-5 h-5 bg-emerald-500 rounded flex items-center justify-center text-white text-xs font-bold">✓</span>
+            <span class="text-white/90 text-sm font-medium flex-1">JSON-LD Structured Product Data</span>
+            <span class="text-emerald-400 text-[10px] uppercase tracking-wider font-bold">Active</span>
+          </div>
+          <div class="flex items-center gap-3 bg-blue-500/10 border border-blue-500/20 rounded-lg px-4 py-3">
+            <span class="w-5 h-5 bg-blue-500 rounded flex items-center justify-center text-white text-xs font-bold">⟳</span>
+            <span class="text-white/90 text-sm font-medium flex-1">GA4 + Clarity Heatmap Integration</span>
+            <span class="text-blue-400 text-[10px] uppercase tracking-wider font-bold">Tracking</span>
+          </div>
+          <div class="flex items-center gap-3 bg-blue-500/10 border border-blue-500/20 rounded-lg px-4 py-3">
+            <span class="w-5 h-5 bg-blue-500 rounded flex items-center justify-center text-white text-xs font-bold">⟳</span>
+            <span class="text-white/90 text-sm font-medium flex-1">AdSense Optimized Placement</span>
+            <span class="text-blue-400 text-[10px] uppercase tracking-wider font-bold">Ready</span>
+          </div>
+          <div class="flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-4 py-3">
+            <span class="w-5 h-5 bg-emerald-500 rounded flex items-center justify-center text-white text-xs font-bold">✓</span>
+            <span class="text-white/90 text-sm font-medium flex-1">Urgency Badges (Scarcity CTR Boost)</span>
+            <span class="text-emerald-400 text-[10px] uppercase tracking-wider font-bold">Active</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9-Section Strategy Summary -->
+      <div class="mb-6">
+        <h4 class="text-white text-sm uppercase tracking-widest font-bold mb-4 flex items-center gap-2">
+          <span class="text-brand-accent">▎</span> 9-Section Strategy Map
+        </h4>
+        <div class="grid grid-cols-3 gap-2">
+          <div class="bg-brand-accent/10 border border-brand-accent/20 rounded-lg p-3 text-center">
+            <span class="text-lg block mb-1">🏗️</span>
+            <span class="text-white/70 text-[10px] uppercase tracking-wider font-bold">Sitemap</span>
+          </div>
+          <div class="bg-brand-accent/10 border border-brand-accent/20 rounded-lg p-3 text-center">
+            <span class="text-lg block mb-1">📊</span>
+            <span class="text-white/70 text-[10px] uppercase tracking-wider font-bold">GA4</span>
+          </div>
+          <div class="bg-brand-accent/10 border border-brand-accent/20 rounded-lg p-3 text-center">
+            <span class="text-lg block mb-1">🧠</span>
+            <span class="text-white/70 text-[10px] uppercase tracking-wider font-bold">AI/ML</span>
+          </div>
+          <div class="bg-brand-accent/10 border border-brand-accent/20 rounded-lg p-3 text-center">
+            <span class="text-lg block mb-1">📈</span>
+            <span class="text-white/70 text-[10px] uppercase tracking-wider font-bold">AIDA</span>
+          </div>
+          <div class="bg-brand-accent/10 border border-brand-accent/20 rounded-lg p-3 text-center">
+            <span class="text-lg block mb-1">💰</span>
+            <span class="text-white/70 text-[10px] uppercase tracking-wider font-bold">AdSense</span>
+          </div>
+          <div class="bg-brand-accent/10 border border-brand-accent/20 rounded-lg p-3 text-center">
+            <span class="text-lg block mb-1">🎯</span>
+            <span class="text-white/70 text-[10px] uppercase tracking-wider font-bold">CTR</span>
+          </div>
+          <div class="bg-brand-accent/10 border border-brand-accent/20 rounded-lg p-3 text-center">
+            <span class="text-lg block mb-1">🔍</span>
+            <span class="text-white/70 text-[10px] uppercase tracking-wider font-bold">SEO</span>
+          </div>
+          <div class="bg-brand-accent/10 border border-brand-accent/20 rounded-lg p-3 text-center">
+            <span class="text-lg block mb-1">📧</span>
+            <span class="text-white/70 text-[10px] uppercase tracking-wider font-bold">Email</span>
+          </div>
+          <div class="bg-brand-accent/10 border border-brand-accent/20 rounded-lg p-3 text-center">
+            <span class="text-lg block mb-1">🛒</span>
+            <span class="text-white/70 text-[10px] uppercase tracking-wider font-bold">Cart/UX</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center text-white/20 text-[10px] uppercase tracking-widest pb-6">
+        Gemessence Analytics Engine v2.0 · Data simulated for presentation
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js?v=8"></script>
   <script src="chatbot.js?v=7"></script>
 </body>
 </html>
